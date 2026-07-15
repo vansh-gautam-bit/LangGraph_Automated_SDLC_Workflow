@@ -18,21 +18,21 @@ class SDLCState(TypedDict):
 
     project_files: dict[str, str]
 
-    product_owner_artifacts: ProductOwnerArtifact |None
+    product_owner_artifact: str |None
 
-    architecture_artifact: ArchitectureArtifact| None
+    architecture_artifact: str| None
 
-    developer_artifact: DeveloperArtifact |None
+    developer_artifact: str |None
 
-    review_artifact: ReviewArtifact |None
+    review_artifact: str|None
 
-    security_artifact: SecurityArtifact | None
+    security_artifact: str| None
 
-    testing_artifact: TestingArtifact |None
+    testing_artifact: str |None
 
-    qa_artifact : QAArtifact | None
+    qa_artifact : str | None
 
-    deployment_artifact: DeploymentArtifact |None
+    deployment_artifact: str |None
 
     current_stage: str
 

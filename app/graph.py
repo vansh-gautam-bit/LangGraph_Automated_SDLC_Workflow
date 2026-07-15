@@ -1,0 +1,34 @@
+from langgraph.graph import StateGraph, START, END
+
+from app.state import SDLCState
+from app.nodes.product_owner import product_owner_node
+from app.nodes.architect import architect_node
+
+builder = StateGraph(SDLCState)
+
+builder.add_node(
+    "product_owner",
+    product_owner_node
+)
+
+builder.add_node(
+    "architect",
+    architect_node
+)
+
+builder.add_edge(
+    START,
+    "product_owner"
+)
+
+builder.add_edge(
+    "product_owner",
+    "architect"
+)
+
+builder.add_edge(
+    "architect",
+    END
+)
+
+graph = builder.compile()
