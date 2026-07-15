@@ -15,7 +15,7 @@ class ProductOwnerArtifact(BaseArtifact):
     acceptance_criteria: list[str]
     risks: list[str]
 
-class ArchitectureArtifacts(BaseArtifact):
+class ArchitectureArtifact(BaseArtifact):
     architecture_summary: str
     folder_structure: str
     database_design: str
@@ -33,6 +33,10 @@ class SecurityArtifact(BaseArtifact):
     critical: list[str]
     high: list[str]
     low: list[str]
+
+class TestingArtifact(BaseArtifact):
+    generated_tests: list[str]
+    coverage: float = Field(..., ge=0.0, le=100.0)    
 
 class QAArtifact(BaseArtifact):
     passed: bool
