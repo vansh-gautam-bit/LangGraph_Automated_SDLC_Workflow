@@ -13,6 +13,8 @@ def architect_node(state):
         [HumanMessage(content=prompt)]
     )
 
+    state["architecture_artifact"] = response.content
+
     state["history"].append(
         "✅ Architecture completed."
     )
