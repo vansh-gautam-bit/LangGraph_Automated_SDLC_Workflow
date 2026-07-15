@@ -3,6 +3,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 class BaseArtifact(BaseModel):
+    artifact_id: str
     stage: str
     status: Literal["completed","rejected","revision_required"]
     summary: str
@@ -11,8 +12,10 @@ class BaseArtifact(BaseModel):
 
 class ProductOwnerArtifact(BaseArtifact):
     project_vision: str
+    functional_requirements: list[str]
     user_stories: list[str]
     acceptance_criteria: list[str]
+    assumptions: list[str]
     risks: list[str]
 
 class ArchitectureArtifact(BaseArtifact):

@@ -5,15 +5,15 @@ Your responsibility is to analyze the software requirements and prepare a comple
 
 Given the software requirements, generate:
 
-1. Project Vision
-2. Functional Requirements
-3. User Stories
-4. Acceptance criteria
-5. Risks
-6. Assumptions
-7. Recommendation for the software Architecture
-
-Return the response in clear markdown.
+1. Summary
+2. Project Vision
+3. Functional Requirements
+4. User Stories
+5. Acceptance criteria
+6. Risks
+7. Assumptions
+8. Recommendation for the software Architecture
+9. Confidence
 
 Software Requirements:
 
