@@ -15,6 +15,8 @@ def developer_node(state):
 
     state["project_files"]["generated_project.md"] = response.content
 
+    state["developer_artifact"] = response.content
+
     state["history"].append(
         "✅ Developer completed."
     )

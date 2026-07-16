@@ -13,6 +13,8 @@ def security_node(state):
         [HumanMessage(content=prompt)]
     )
 
+    state["security_artifact"] = response.content
+
     state["history"].append(
         "✅ Security completed."
     )

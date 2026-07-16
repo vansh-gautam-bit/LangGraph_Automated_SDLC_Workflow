@@ -7,6 +7,7 @@ from app.nodes.architect import architect_node
 from app.nodes.developer import developer_node
 from app.nodes.reviewer import reviewer_node
 from app.nodes.security import security_node
+from app.nodes.testing import testing_node
 
 builder = StateGraph(SDLCState)
 
@@ -33,6 +34,11 @@ builder.add_node(
 builder.add_node(
     "security",
     security_node
+)
+
+builder.add_node(
+    "testing",
+    testing_node
 )
 
 builder.add_edge(
@@ -62,6 +68,11 @@ builder.add_edge(
 
 builder.add_edge(
     "security",
+    "testing"
+)
+
+builder.add_edge(
+    "testing",
     END
 )
 
