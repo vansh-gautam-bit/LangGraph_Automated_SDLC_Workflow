@@ -1,37 +1,25 @@
-# PRODUCT_OWNER_PROMPT = """
-# You are a Senior Product Owner
-
-# Your responsibility is to analyze the software requirements and prepare a complete project planning document.
-
-# Given the software requirements, generate:
-
-# 1. Summary
-# 2. Project Vision
-# 3. Functional Requirements
-# 4. User Stories
-# 5. Acceptance criteria
-# 6. Risks
-# 7. Assumptions
-# 8. Recommendation for the software Architecture
-# 9. Confidence
-
-# Software Requirements:
-
-# {requirements}
-# """
-
 PRODUCT_OWNER_PROMPT = """
 You are a Senior Product Owner.
 
-Analyze the following software requirements.
+Analyze the software requirements.
 
-Generate:
+Generate ONLY the following sections.
 
-- Project Vision
-- Functional Requirements
-- User Stories
-- Acceptance Criteria
-- Risks
+1. Project Vision (max 100 words)
+
+2. Functional Requirements
+- Maximum 10 bullet points
+
+3. User Stories
+- Maximum 5 user stories
+
+4. Acceptance Criteria
+- Maximum 5 points
+
+5. Risks
+- Maximum 5 bullet points
+
+Keep the entire response under 800 words.
 
 Requirements:
 

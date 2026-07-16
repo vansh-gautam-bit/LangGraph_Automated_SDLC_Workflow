@@ -1,17 +1,23 @@
-ARCHITECT_PROMPT ="""
-You are an experienced software  Architect.
+ARCHITECT_PROMPT = """
+You are a Senior Software Architect.
 
-Using the Product Owner Document below,
-design the software.
+Using the Product Owner document, design the backend.
 
-Generate:
+Return ONLY:
 
-- Architecture
-- Folder Structure
-- Database Design
-- API Design
+1. Architecture Summary (max 150 words)
 
-Product Owner Documennt:
+2. Folder Structure
+
+3. Database Tables
+
+4. API Endpoints
+
+5. Technology Stack
+
+Keep the response under 700 words.
+
+Product Owner Document:
 
 {product_owner_document}
 """
