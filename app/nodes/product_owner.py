@@ -29,10 +29,10 @@
 #     return state
 
 
-from langchain_core.messages import HumanMessage
+from app.utils.llm_helper import invoke_llm
+from app.utils.state_helper import complete_stage
 
 from app.prompts.product_owner import PRODUCT_OWNER_PROMPT
-from app.services.llm import llm
 
 
 def product_owner_node(state):
@@ -41,16 +41,12 @@ def product_owner_node(state):
         requirements=state["requirements"]
     )
 
-    response = llm.invoke(
-        [HumanMessage(content=prompt)]
+    response = invoke_llm(prompt)
+
+    return complete_stage(
+        state=state,
+        artifact_name="product_owner_artifact",
+        artifact=response,
+        next_stage="Architecture",
+        message="✅ Product Owner completed."
     )
-
-    state["product_owner_artifact"] = response.content
-
-    state["history"].append(
-        "✅ Product Owner completed."
-    )
-
-    state["current_stage"] = "Architecture"
-
-    return state
