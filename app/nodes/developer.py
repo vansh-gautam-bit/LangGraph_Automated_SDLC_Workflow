@@ -9,12 +9,14 @@ def developer_node(state):
         architecture_document=state["architecture_artifact"]
     )
 
-    response = invoke_llm(prompt)
+    artifact = invoke_llm(prompt)
+
+    state["project_files"]["generated_project.md"] = artifact
 
     return complete_stage(
         state=state,
         artifact_name="developer_artifact",
-        artifact=response,
+        artifact=artifact,
         next_stage="Reviewer",
         message="✅ Developer completed."
-    )
+)

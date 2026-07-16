@@ -13,7 +13,7 @@ def reviewer_node(state):
 
     return complete_stage(
         state=state,
-        artifact_name="reviwer_artifact",
+        artifact_name="review_artifact",
         artifact=response,
         next_stage="Security",
         message="✅  Review completed."

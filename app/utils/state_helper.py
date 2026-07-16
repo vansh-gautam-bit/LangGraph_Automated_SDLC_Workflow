@@ -12,8 +12,5 @@ def complete_stage(
     state[artifact_name] = artifact
     state["history"].append(message)
     state["current_stage"] = next_stage
-    state["completed_stages"].append(
-        artifact_name
-    )
 
     return state

@@ -13,7 +13,7 @@ def architect_node(state):
 
     return complete_stage(
         state=state,
-        artifact_name="architect_artifact",
+        artifact_name="architecture_artifact",
         artifact=response,
         next_stage="Developer",
         message="✅ Architecture completed."
