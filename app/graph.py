@@ -6,6 +6,7 @@ from app.nodes.product_owner import product_owner_node
 from app.nodes.architect import architect_node
 from app.nodes.developer import developer_node
 from app.nodes.reviewer import reviewer_node
+from app.nodes.security import security_node
 
 builder = StateGraph(SDLCState)
 
@@ -29,6 +30,11 @@ builder.add_node(
     reviewer_node
 )
 
+builder.add_node(
+    "security",
+    security_node
+)
+
 builder.add_edge(
     START,
     "product_owner"
@@ -49,9 +55,13 @@ builder.add_edge(
     "reviewer"
 )
 
-
 builder.add_edge(
     "reviewer",
+    "security"
+)
+
+builder.add_edge(
+    "security",
     END
 )
 
