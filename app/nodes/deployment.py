@@ -1,4 +1,4 @@
-from langchain_core.messages import HumanMessage
+from app.utils.state_helper import complete_stage
 
 from app.prompts.deployment import DEPLOYMENT_PROMPT
 from app.utils.llm_helper import invoke_llm
@@ -17,12 +17,10 @@ def deployment_node(state):
 
     response = invoke_llm(prompt)
 
-    state["deployment_artifact"] = response.content
-
-    state["history"].append(
-        "✅ Deployment completed."
-    )
-
-    state["current_stage"] = "Completed"
-
-    return state
+    return complete_stage(
+    state=state,
+    artifact_name="deployment_artifact",
+    artifact=response,
+    next_stage="Completed",
+    message="✅ Deployment completed."
+)

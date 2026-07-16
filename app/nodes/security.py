@@ -1,4 +1,4 @@
-from langchain_core.messages import HumanMessage
+from app.utils.state_helper import complete_stage
 
 from app.prompts.security import SECURITY_PROMPT
 from app.utils.llm_helper import invoke_llm
@@ -11,12 +11,10 @@ def security_node(state):
 
     response = invoke_llm(prompt)
 
-    state["security_artifact"] = response.content
-
-    state["history"].append(
-        "✅ Security completed."
+    return complete_stage(
+        state=state,
+        artifact_name="security_artifact",
+        artifact=response,
+        next_stage="Testing",
+        message="✅ Security completed."
     )
-
-    state["current_stage"] = "Testing"
-
-    return state

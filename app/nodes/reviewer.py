@@ -1,4 +1,4 @@
-from langchain_core.messages import HumanMessage
+from app.utils.state_helper import complete_stage
 
 from app.prompts.reviewer import REVIEWER_PROMPT
 from app.utils.llm_helper import invoke_llm
@@ -11,12 +11,10 @@ def reviewer_node(state):
 
     response = invoke_llm(prompt)
 
-    state["review_artifact"] = response.content
-    
-    state["history"].append(
-        "✅ Reviewer completed."
+    return complete_stage(
+        state=state,
+        artifact_name="reviwer_artifact",
+        artifact=response,
+        next_stage="Security",
+        message="✅  Review completed."
     )
-
-    state["current_stage"] = "Security"
-
-    return state

@@ -1,4 +1,4 @@
-from langchain_core.messages import HumanMessage
+from app.utils.state_helper import complete_stage
 
 from app.prompts.developer import DEVELOPER_PROMPT
 from app.utils.llm_helper import invoke_llm
@@ -11,14 +11,10 @@ def developer_node(state):
 
     response = invoke_llm(prompt)
 
-    state["project_files"]["generated_project.md"] = response.content
-
-    state["developer_artifact"] = response.content
-
-    state["history"].append(
-        "✅ Developer completed."
+    return complete_stage(
+        state=state,
+        artifact_name="developer_artifact",
+        artifact=response,
+        next_stage="Reviewer",
+        message="✅ Developer completed."
     )
-
-    state["current_stage"] = "Review"
-
-    return state

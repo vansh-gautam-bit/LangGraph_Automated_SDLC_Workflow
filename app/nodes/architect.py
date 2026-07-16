@@ -1,4 +1,4 @@
-from langchain_core.messages import HumanMessage
+from app.utils.state_helper import complete_stage
 
 from app.prompts.architect import ARCHITECT_PROMPT
 from app.utils.llm_helper import invoke_llm
@@ -11,12 +11,10 @@ def architect_node(state):
 
     response = invoke_llm(prompt)
 
-    state["architecture_artifact"] = response.content
-
-    state["history"].append(
-        "✅ Architecture completed."
+    return complete_stage(
+        state=state,
+        artifact_name="architect_artifact",
+        artifact=response,
+        next_stage="Developer",
+        message="✅ Architecture completed."
     )
-
-    state["current_stage"] = "Developer"
-
-    return state

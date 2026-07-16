@@ -1,4 +1,4 @@
-from langchain_core.messages import HumanMessage 
+from app.utils.state_helper import complete_stage
 
 from app.prompts.testing import TESTING_PROMPT
 from app.utils.llm_helper import invoke_llm
@@ -11,12 +11,10 @@ def testing_node(state):
 
     response = invoke_llm(prompt)
 
-    state["testing_artifact"] = response.content
-
-    state["history"].append(
-        "✅ Testing completed."
+    return complete_stage(
+        state=state,
+        artifact_name="testing_artifact",
+        artifact=response,
+        next_stage="QA",
+        message="✅ Testing completed."
     )
-
-    state["current_stage"] = "QA"
-
-    return state
