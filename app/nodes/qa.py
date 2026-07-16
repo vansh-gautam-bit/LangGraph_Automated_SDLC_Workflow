@@ -1,7 +1,7 @@
 from langchain_core.messages import HumanMessage
 
 from app.prompts.qa import QA_PROMPT
-from app.services.llm import llm
+from app.utils.llm_helper import invoke_llm
 
 def qa_node(state):
 
@@ -11,9 +11,7 @@ def qa_node(state):
         testing=state["testing_artifact"]
     )
 
-    response = llm.invoke(
-        [HumanMessage(content=prompt)]
-    )
+    response = invoke_llm(prompt)
 
     state["qa_artifact"] = response.content
 

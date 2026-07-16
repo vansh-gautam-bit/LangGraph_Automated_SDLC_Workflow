@@ -1,7 +1,7 @@
 from langchain_core.messages import HumanMessage
 
 from app.prompts.architect import ARCHITECT_PROMPT
-from app.services.llm import llm
+from app.utils.llm_helper import invoke_llm
 
 def architect_node(state):
 
@@ -9,9 +9,7 @@ def architect_node(state):
         product_owner_document=state["product_owner_artifact"]
     )
 
-    response = llm.invoke(
-        [HumanMessage(content=prompt)]
-    )
+    response = invoke_llm(prompt)
 
     state["architecture_artifact"] = response.content
 

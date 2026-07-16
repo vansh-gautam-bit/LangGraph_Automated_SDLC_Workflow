@@ -1,7 +1,7 @@
 from langchain_core.messages import HumanMessage
 
 from app.prompts.security import SECURITY_PROMPT
-from app.services.llm import llm
+from app.utils.llm_helper import invoke_llm
 
 def security_node(state):
 
@@ -9,9 +9,7 @@ def security_node(state):
         generated_project=state["project_files"]["generated_project.md"]
     )
 
-    response = llm.invoke(
-        [HumanMessage(content=prompt)]
-    )
+    response = invoke_llm(prompt)
 
     state["security_artifact"] = response.content
 

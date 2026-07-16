@@ -1,7 +1,7 @@
 from langchain_core.messages import HumanMessage
 
 from app.prompts.deployment import DEPLOYMENT_PROMPT
-from app.services.llm import llm 
+from app.utils.llm_helper import invoke_llm
 
 def deployment_node(state):
 
@@ -15,9 +15,7 @@ def deployment_node(state):
         qa=state["qa_artifact"]
     )
 
-    response = llm.invoke(
-        [HumanMessage(content=prompt)]
-    )
+    response = invoke_llm(prompt)
 
     state["deployment_artifact"] = response.content
 

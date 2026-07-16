@@ -1,7 +1,7 @@
 from langchain_core.messages import HumanMessage
 
 from app.prompts.reviewer import REVIEWER_PROMPT
-from app.services.llm import llm
+from app.utils.llm_helper import invoke_llm
 
 def reviewer_node(state):
 
@@ -9,9 +9,7 @@ def reviewer_node(state):
         generated_project=state["project_files"]["generated_project.md"]
     )
 
-    response = llm.invoke(
-        [HumanMessage(content=prompt)]
-    )
+    response = invoke_llm(prompt)
 
     state["review_artifact"] = response.content
     
