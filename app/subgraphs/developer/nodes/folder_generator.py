@@ -5,8 +5,9 @@ from app.utils.llm_helper import invoke_llm
 def folder_generator_node(state):
 
     prompt = FOLDER_GENERATOR_PROMPT.format(
-        architecture = state["architecture_artifact"]
-    )
+    project_name=state["project_name"],
+    architecture=state["architecture_artifact"],
+)
 
     folder_structure = invoke_llm(prompt)
 

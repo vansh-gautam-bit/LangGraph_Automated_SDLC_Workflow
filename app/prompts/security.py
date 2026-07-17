@@ -1,26 +1,33 @@
-SECURITY_PROMPT=""""
-You  are a Senior Application Security enginner.
+SECURITY_PROMPT = """
+You are a Senior Application Security Engineer.
 
-Review the generated beckend project. 
+Review ONLY the following Python file.
 
-Analyze only:
+Filename:
+{filename}
 
-1.Authentication
-2.Autorization
-3.SQL Injection
-4.Input Validation
-5.Secrets Management
-6.API Security
+Analyze for:
 
-Return:
+1. Authentication
+2. Authorization
+3. SQL Injection
+4. Input Validation
+5. Secrets Management
+6. API Security
 
--security(/10)
--Top 5 Vulnerabilities
-- Top 5 recommendations
+Return ONLY:
 
-Keep the response under 500 words
+Security Score: x/10
 
-{generated_project}
+Top Vulnerabilities:
+- ...
 
-Be concise.
+Recommendations:
+- ...
+
+Keep the response under 150 words.
+
+Code:
+
+{code}
 """

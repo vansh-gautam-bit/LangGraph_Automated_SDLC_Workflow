@@ -1,30 +1,44 @@
-QA_PROMPT="""
+QA_PROMPT = """
 You are a Senior QA Lead.
 
-You have recieved:
+You have received three reports:
 
-1. Code Review Report
-2. Security Review Report
-3. Testing Report
+==========================
+Code Review Report
+==========================
+{review}
 
-Evaluate the overall project.
+==========================
+Security Review Report
+==========================
+{security}
+
+==========================
+Testing Report
+==========================
+{testing}
+
+Your responsibility is NOT to review code.
+
+Instead, evaluate the reports and decide whether the software is ready for release.
 
 Return ONLY:
 
-- Overall Quality Score(/10)
--  Release Descision (APPROVED or REJECTED)
-- Top 5 Remaining Issues
-- Final Recommendation
+Overall Quality Score: x/10
 
-Maximum 400 words.
-{review}
+Release Decision:
+APPROVED
+or
+REJECTED
 
-Security Report:
-{security}
+Critical Blockers:
+- ...
 
-Testing Report:
-{testing}
+Top Remaining Issues:
+- ...
 
-Be concise.
+Final Recommendation:
+...
 
+Keep the response under 250 words.
 """

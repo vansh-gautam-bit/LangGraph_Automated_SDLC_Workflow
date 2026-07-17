@@ -10,6 +10,7 @@ from app.nodes.security import security_node
 from app.nodes.testing import testing_node
 from app.nodes.qa import qa_node
 from app.nodes.deployment import deployment_node
+from app.nodes.writer import writer_node
 
 builder = StateGraph(SDLCState)
 
@@ -53,6 +54,11 @@ builder.add_node(
     deployment_node
 )
 
+builder.add_node(
+    "writer",
+    writer_node
+)
+
 builder.add_edge(
     START,
     "product_owner"
@@ -70,6 +76,11 @@ builder.add_edge(
 
 builder.add_edge(
     "developer",
+    "writer"
+)
+
+builder.add_edge(
+    "writer",
     "reviewer"
 )
 

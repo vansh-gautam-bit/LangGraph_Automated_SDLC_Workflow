@@ -58,12 +58,12 @@ builder.add_node(
     readme_generator_node,
 )
 
-builder.add_edge(START,"folder_generator")
+builder.add_edge(START, "folder_generator")
 builder.add_edge("folder_generator", "model_generator")
 builder.add_edge("model_generator", "schema_generator")
-builder.add_edge("schema_generator", "router_generator")
-builder.add_edge("router_generator", "service_generator")
-builder.add_edge("service_generator", "readme_generator")
+builder.add_edge("schema_generator", "service_generator")
+builder.add_edge("service_generator", "router_generator")
+builder.add_edge("router_generator", "readme_generator")
 builder.add_edge("readme_generator", END)
 
 developer_graph = builder.compile()

@@ -3,20 +3,8 @@ You are a Senior Python Backend Engineer.
 
 Generate a production-ready `services.py` file.
 
-## Project Name
-{project_name}
-
 ## User Requirements
 {requirements}
-
-## Product Owner Specification
-{product_owner}
-
-## Architecture Specification
-{architecture}
-
-## Folder Structure
-{folder_structure}
 
 ## SQLAlchemy Models
 {models}
@@ -24,25 +12,22 @@ Generate a production-ready `services.py` file.
 ## Pydantic Schemas
 {schemas}
 
-## Router Code
-{routers}
-
 ## Instructions
 
-Generate the service layer.
+Generate only the service layer.
 
 Requirements:
 
-- Implement CRUD operations.
+- Implement complete CRUD operations.
 - Use SQLAlchemy ORM.
-- Keep business logic here.
-- No FastAPI routes.
-- No Pydantic models.
-- Use dependency injection where appropriate.
+- Place all business logic inside the service layer.
+- Do NOT generate FastAPI routes.
+- Do NOT generate Pydantic schemas.
+- Use the provided models and schemas.
+- Add proper type hints.
 - Handle exceptions gracefully.
-- Add type hints.
-- Follow clean architecture.
-- Import everything needed.
+- Follow clean architecture principles.
+- Include all necessary imports.
 
-Return ONLY Python code.
+Return ONLY valid Python code.
 """

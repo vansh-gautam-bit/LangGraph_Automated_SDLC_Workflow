@@ -1,27 +1,26 @@
 MODEL_GENERATOR_PROMPT = """
 You are a Senior Python Backend Engineer.
 
-Your task is to generate SQLAlchemy OMR models for the project.
+Generate a production-ready SQLAlchemy `models.py` file.
 
-Project Name:
-{project_name}
-
-User Requirements:
+## User Requirements
 {requirements}
 
-Product Owner Analysis:
-{product_owner}
-
-Architecture Design:
+## Architecture
 {architecture}
 
-Folder Structure:
-{folder_structure}
+## Instructions
 
-Instructions:
-- Generate clean SQLAlchemy models.
-- use relationships were appropriate.
-- Use type annotations.
-- Return ONLY Python code.
+Generate SQLAlchemy ORM models based on the requirements and architecture.
 
+Requirements:
+
+- Use SQLAlchemy ORM.
+- Include relationships where appropriate.
+- Use proper type annotations.
+- Define primary keys and foreign keys correctly.
+- Use meaningful table names.
+- Include all necessary imports.
+- Follow clean architecture principles.
+- Return ONLY valid Python code.
 """

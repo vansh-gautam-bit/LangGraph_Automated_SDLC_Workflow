@@ -1,20 +1,32 @@
 TESTING_PROMPT = """
 You are a Senior QA Automation Engineer.
 
-Ananlye the generated backend project.
+Review ONLY the following file.
+
+Filename:
+{filename}
 
 Generate:
 
-1. Unit Test Plan 
-3. Integration Test Plan 
-3. API Test Cases
+1. Unit Test Ideas
+2. Integration Test Ideas (if applicable)
+3. API Test Cases (only if this file contains API routes)
 4. Edge Cases
+5. Expected Failure Scenarios
 
-Maximum 500 words.
+Return ONLY:
 
-Generated Project:
+Testing Score: x/10
 
-{generated_project}
+Suggested Tests:
+- ...
 
-Be concise.
+Edge Cases:
+- ...
+
+Keep the response under 150 words.
+
+File Content:
+
+{code}
 """

@@ -1,7 +1,7 @@
 README_GENERATOR_PROMPT = """
-You are an experienced Technical Documentation Engineer.
+You are a Senior Software Engineer.
 
-Generate a professional README.md for this project.
+Generate a professional README.md.
 
 ## Project Name
 {project_name}
@@ -9,41 +9,22 @@ Generate a professional README.md for this project.
 ## User Requirements
 {requirements}
 
-## Product Owner Specification
-{product_owner}
-
-## Architecture Specification
-{architecture}
-
 ## Folder Structure
 {folder_structure}
 
-## Models
-{models}
-
-## Schemas
-{schemas}
-
-## Routers
-{routers}
-
-## Services
-{services}
-
 ## Instructions
 
-Generate a professional README containing:
+Generate a README containing:
 
-- Project Overview
+- Project overview
 - Features
-- Technology Stack
-- Folder Structure
-- Installation
-- Environment Variables
-- Running the Application
-- API Overview
-- Future Improvements
-- License
+- Folder structure
+- Installation steps
+- Running the application
+- API overview
+- Tech stack
 
-Return ONLY markdown.
+Do NOT include code.
+
+Return ONLY Markdown.
 """

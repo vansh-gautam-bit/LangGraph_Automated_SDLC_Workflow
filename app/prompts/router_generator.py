@@ -3,26 +3,14 @@ You are a Senior FastAPI Backend Engineer.
 
 Generate a production-ready `routers.py` file.
 
-## Project Name
-{project_name}
-
 ## User Requirements
 {requirements}
 
-## Product Owner Specification
-{product_owner}
-
-## Architecture Specification
-{architecture}
-
-## Folder Structure
-{folder_structure}
-
-## SQLAlchemy Models
-{models}
-
 ## Pydantic Schemas
 {schemas}
+
+## Service Layer
+{services}
 
 ## Instructions
 
@@ -31,15 +19,16 @@ Generate FastAPI CRUD routes.
 Requirements:
 
 - Use APIRouter.
-- Follow REST conventions.
-- Include GET, POST, PUT, DELETE endpoints.
+- Follow RESTful conventions.
+- Include GET, POST, PUT and DELETE endpoints.
 - Use dependency injection.
-- Use proper response models.
-- Call service layer only.
+- Use the provided Pydantic schemas as request and response models.
+- Call ONLY the service layer.
 - Do NOT write business logic.
-- Include imports.
-- Use async endpoints.
-- Use proper HTTP status codes.
+- Do NOT access SQLAlchemy models directly.
+- Include all required imports.
+- Use async endpoints where appropriate.
+- Return proper HTTP status codes.
 
-Return ONLY Python code.
+Return ONLY valid Python code.
 """

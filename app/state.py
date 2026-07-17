@@ -12,6 +12,10 @@ from app.schemas.artifacts import (
 )
 
 class SDLCState(TypedDict):
+    generated_project_path: str
+
+    writer_status: str
+        
     project_name: str
 
     user_requirements: str

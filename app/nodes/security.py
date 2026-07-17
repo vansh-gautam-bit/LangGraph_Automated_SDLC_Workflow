@@ -1,28 +1,49 @@
-from app.utils.state_helper import complete_stage
+from pathlib import Path
 
 from app.prompts.security import SECURITY_PROMPT
 from app.utils.llm_helper import invoke_llm
+from app.utils.state_helper import complete_stage
 
 
 def security_node(state):
 
-    generated_files = state["developer_artifact"]["generated_files"]
+    project_path = Path(state["generated_project_path"])
 
-    generated_project = "\n\n".join(
-        f"### {filename}\n{content}"
-        for filename, content in generated_files.items()
-    )
+    files_to_review = [
+        "app/models.py",
+        "app/schemas.py",
+        "app/services.py",
+        "app/routers.py",
+    ]
 
-    prompt = SECURITY_PROMPT.format(
-        generated_project=generated_project
-    )
+    reports = []
 
-    response = invoke_llm(prompt)
+    for file in files_to_review:
+
+        file_path = project_path / file
+
+        if not file_path.exists():
+            continue
+
+        code = file_path.read_text(encoding="utf-8")
+
+        prompt = SECURITY_PROMPT.format(
+            filename=file,
+            code=code,
+        )
+
+        response = invoke_llm(prompt)
+
+        reports.append(
+            f"# {file}\n\n{response}"
+        )
+
+    final_report = "\n\n".join(reports)
 
     return complete_stage(
         state=state,
         artifact_name="security_artifact",
-        artifact=response,
+        artifact=final_report,
         next_stage="Testing",
         message="✅ Security completed."
     )
