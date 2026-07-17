@@ -9,9 +9,11 @@ class DeveloperState(TypedDict):
 
     folder_structure: str
 
-    model: str
+    models: str
 
     schemas: str
+
+    routers: str
     
     services: str
 

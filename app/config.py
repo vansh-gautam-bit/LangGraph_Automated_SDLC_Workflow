@@ -4,6 +4,12 @@ class Settings(BaseSettings):
     OPENROUTER_API_KEY: str
     OPENROUTER_MODEL: str
 
+    GROQ_API_KEY: str
+    GROQ_MODEL: str
+
+    GOOGLE_API_KEY: str
+    GOOGLE_MODEL: str
+
     DATABASE_URL: str
 
     MEM0_API_KEY: str
