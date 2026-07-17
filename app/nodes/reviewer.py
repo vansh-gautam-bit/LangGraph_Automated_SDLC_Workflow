@@ -5,10 +5,16 @@ from app.utils.llm_helper import invoke_llm
 
 def reviewer_node(state):
 
-    prompt = REVIEWER_PROMPT.format(
-        generated_project=state["project_files"]["generated_project.md"]
+    files = state["developer_artifact"]["generated_files"]
+
+    generated_project = "\n\n".join(
+        f"### {filename}\n{content}"
+        for filename, content in files.items()
     )
 
+    prompt = REVIEWER_PROMPT.format(
+        generated_project=generated_project
+    )
     response = invoke_llm(prompt)
 
     return complete_stage(

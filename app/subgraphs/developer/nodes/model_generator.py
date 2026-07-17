@@ -5,7 +5,7 @@ def model_generator_node(state):
 
     prompt = MODEL_GENERATOR_PROMPT.format(
         project_name=state["project_name"],
-        requirements=state["requirements_artifact"],
+        requirements=state["user_requirements"],
         product_owner=state["product_owner_artifact"],
         architecture=state["architecture_artifact"],
         folder_structure=state["folder_structure"],

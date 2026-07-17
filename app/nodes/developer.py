@@ -7,7 +7,7 @@ def developer_node(state):
 
     developer_state = {
         "project_name": state["project_name"],
-        "requirements": state["requirements"],
+        "user_requirements": state["user_requirements"],
 
         "product_owner_artifact": state["product_owner_artifact"],
         "architecture_artifact": state["architecture_artifact"],

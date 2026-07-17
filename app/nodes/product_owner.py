@@ -7,7 +7,7 @@ from app.prompts.product_owner import PRODUCT_OWNER_PROMPT
 def product_owner_node(state):
 
     prompt = PRODUCT_OWNER_PROMPT.format(
-        requirements=state["requirements"]
+        requirements=state["user_requirements"]
     )
 
     response = invoke_llm(prompt)

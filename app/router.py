@@ -11,7 +11,7 @@ def start_workflow(request: WorkflowRequest):
 
         "project_name": request.project_name,
 
-        "requirements": request.requirements,
+        "user_requirements": request.requirements,
 
         "product_owner_artifact": None,
 

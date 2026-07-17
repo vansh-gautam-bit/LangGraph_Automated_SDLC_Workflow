@@ -5,8 +5,15 @@ from app.utils.llm_helper import invoke_llm
 
 def testing_node(state):
 
+    generated_files = state["developer_artifact"]["generated_files"]
+
+    generated_project = "\n\n".join(
+        f"### {filename}\n{content}"
+        for filename, content in generated_files.items()
+    )
+
     prompt = TESTING_PROMPT.format(
-        generated_project=state["project_files"]["generated_project.md"]
+        generated_project=generated_project
     )
 
     response = invoke_llm(prompt)

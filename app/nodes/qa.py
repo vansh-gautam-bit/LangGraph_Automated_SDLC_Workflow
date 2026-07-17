@@ -17,6 +17,6 @@ def qa_node(state):
         state=state,
         artifact_name="qa_artifact",
         artifact=response,
-        next_stage="Deplyment",
+        next_stage="Deployment",
         message="✅ QA completed."
     )

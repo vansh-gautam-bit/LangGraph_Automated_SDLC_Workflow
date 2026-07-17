@@ -14,7 +14,7 @@ from app.schemas.artifacts import (
 class SDLCState(TypedDict):
     project_name: str
 
-    requirements: str
+    user_requirements: str
 
     project_files: dict[str, str]
 
