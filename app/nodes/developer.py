@@ -6,8 +6,8 @@ from app.utils.llm_helper import invoke_llm
 def developer_node(state):
 
     developer_state = {
-        "project_name": state["project_ name"],
-        "user_requirements": state["user_requirements"],
+        "project_name": state["project_name"],
+        "requirements": state["requirements"],
 
         "product_owner_artifact": state["product_owner_artifact"],
         "architecture_artifact": state["architecture_artifact"],

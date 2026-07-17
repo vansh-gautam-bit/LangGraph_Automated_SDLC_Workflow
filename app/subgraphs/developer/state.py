@@ -1,7 +1,11 @@
 from typing import TypedDict
 
 class DeveloperState(TypedDict):
-    architecture: str
+    project_name:str
+    user_requirements: str
+
+    product_owner_artifact: str
+    architecture_artifact: str
 
     folder_structure: str
 
