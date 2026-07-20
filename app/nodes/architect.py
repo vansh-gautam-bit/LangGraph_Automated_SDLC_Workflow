@@ -8,8 +8,10 @@ from app.utils.llm_helper import invoke_llm
 def architect_node(state):
 
     prompt = ARCHITECT_PROMPT.format(
-        product_owner_document=state["product_owner_artifact"]
-    )
+    product_owner_document=state["product_owner_artifact"],
+    previous_artifact=state.get("architecture_artifact", ""),
+    feedback=state.get("user_feedback", ""),
+)
 
     artifact = invoke_llm(prompt)
 

@@ -30,7 +30,7 @@ def start_workflow(request: WorkflowRequest):
 
         "qa_artifact": None,
 
-        "depoyment_artifact": None,
+        "deployment_artifact": None,
 
         "review_decision": None,
 
@@ -51,11 +51,26 @@ def start_workflow(request: WorkflowRequest):
         }
     }
 
-    result = graph.invoke(initial_state, config=config)
+    try:
+        result = graph.invoke(
+            initial_state,
+            config=config
+        )
 
-    return {
-        "thread_id": thread_id,
-        "result":result
+        return {
+            "thread_id": thread_id,
+            "result": result
+        }
+
+    except Exception as e:
+        import traceback
+
+        print("\n" + "=" * 80)
+        traceback.print_exc()
+        print("=" * 80 + "\n")
+
+        return {
+            "error": str(e)
         }
 
 @router.post("/workflow/review")

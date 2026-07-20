@@ -11,9 +11,8 @@ from app.nodes.testing import testing_node
 from app.nodes.qa import qa_node
 from app.nodes.deployment import deployment_node
 from app.nodes.writer import writer_node
-from langgraph.checkpoint.memory import MemorySaver
+from app.checkpointer import checkpointer
 
-memory = MemorySaver()
 
 def route_after_product_owner(state):
 
@@ -135,5 +134,5 @@ builder.add_edge(
 )
 
 graph = builder.compile(
-    checkpointer=memory
+    checkpointer=checkpointer
 )
