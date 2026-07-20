@@ -21,6 +21,13 @@ Generate ONLY the following sections.
 
 Keep the entire response under 800 words.
 
+User Long-Term Preferences
+
+{memory_context}
+
+If these preferences are relevant,
+use them while generating the document.
+
 Requirements:
 {requirements}
 

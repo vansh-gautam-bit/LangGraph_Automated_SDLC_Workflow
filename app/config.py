@@ -9,6 +9,7 @@ class Settings(BaseSettings):
 
     GOOGLE_API_KEY: str
     GOOGLE_MODEL: str
+    GOOGLE_EMBEDDING_MODEL: str = "models/gemini-embedding-001"
 
     DATABASE_URL: str
 
