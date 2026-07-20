@@ -11,6 +11,23 @@ from app.nodes.testing import testing_node
 from app.nodes.qa import qa_node
 from app.nodes.deployment import deployment_node
 from app.nodes.writer import writer_node
+from langgraph.checkpoint.memory import MemorySaver
+
+memory = MemorySaver()
+
+def route_after_product_owner(state):
+
+    if state["review_decision"] == "feedback":
+        return "product_owner"
+    
+    return "architect"
+
+def route_after_architect(state):
+
+    if state["review_decision"] == "feedback":
+        return "architect"
+    
+    return "developer"
 
 builder = StateGraph(SDLCState)
 
@@ -64,14 +81,22 @@ builder.add_edge(
     "product_owner"
 )
 
-builder.add_edge(
+builder.add_conditional_edges(
     "product_owner",
-    "architect"
+    route_after_product_owner,
+    {
+        "architect": "architect",
+        "product_owner": "product_owner",
+    },
 )
 
-builder.add_edge(
+builder.add_conditional_edges(
     "architect",
-    "developer"
+    route_after_architect,
+    {
+        "architect": "architect",
+        "developer": "developer",
+    },
 )
 
 builder.add_edge(
@@ -109,4 +134,6 @@ builder.add_edge(
     END
 )
 
-graph = builder.compile()
+graph = builder.compile(
+    checkpointer=memory
+)

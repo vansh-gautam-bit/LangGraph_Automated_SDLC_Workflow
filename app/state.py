@@ -15,7 +15,7 @@ class SDLCState(TypedDict):
     generated_project_path: str
 
     writer_status: str
-        
+
     project_name: str
 
     user_requirements: str
@@ -37,6 +37,10 @@ class SDLCState(TypedDict):
     qa_artifact : str | None
 
     deployment_artifact: str |None
+
+    review_descision: str | None
+
+    user_feedback: str | None
 
     current_stage: str
 

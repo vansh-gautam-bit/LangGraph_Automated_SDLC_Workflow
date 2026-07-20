@@ -1,6 +1,9 @@
 from fastapi import APIRouter
 from app.schemas.request import WorkflowRequest
 from app.graph import graph
+import uuid
+from langgraph.types import Command
+from app.schemas.review import ReviewRequest
 
 router =APIRouter()
 
@@ -29,6 +32,10 @@ def start_workflow(request: WorkflowRequest):
 
         "depoyment_artifact": None,
 
+        "review_decision": None,
+
+        "user_feedback": "",
+
         "project_files": {},
 
         "history": [],
@@ -36,6 +43,38 @@ def start_workflow(request: WorkflowRequest):
         "current_stage": "Requirements"
     }
 
-    result = graph.invoke(initial_state)
+    thread_id = str(uuid.uuid4())
+
+    config = {
+        "configurable": {
+            "thread_id":thread_id
+        }
+    }
+
+    result = graph.invoke(initial_state, config=config)
+
+    return {
+        "thread_id": thread_id,
+        "result":result
+        }
+
+@router.post("/workflow/review")
+def review_workflow(request: ReviewRequest):
+
+    config = {
+        "configurable": {
+            "thread_id": request.thread_id
+        }
+    }
+
+    result = graph.invoke(
+        Command(
+            resume={
+                "decision":request.decision,
+                "feedback": request.feedback
+            }
+        ),
+        config=config
+    )
 
     return result

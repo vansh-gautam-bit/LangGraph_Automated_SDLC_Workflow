@@ -22,6 +22,20 @@ Generate ONLY the following sections.
 Keep the entire response under 800 words.
 
 Requirements:
-
 {requirements}
+
+Previous Draft:
+{previous_artifact}
+
+Human Feedback (if any):
+{feedback}
+
+If feedback is provided:
+- Revise the previous output accordingly.
+- Address every feedback point.
+- Preserve all good content.
+- Improve only where needed.
+
+If no feedback is provided:
+Generate the document normally.
 """

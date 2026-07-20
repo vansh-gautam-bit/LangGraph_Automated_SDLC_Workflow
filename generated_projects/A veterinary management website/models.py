@@ -1,11 +1,10 @@
-Here's the `models.py` file for the `database_service`:
+Here's the `models.py` file based on the provided requirements and architecture:
 
 ```python
-# models.py
-
-from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from datetime import datetime
 from typing import Optional
 
 Base = declarative_base()
@@ -15,69 +14,46 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    username = Column(String, nullable=False, unique=True)
-    email = Column(String, nullable=False, unique=True)
-    password = Column(String, nullable=False)
+    username = Column(String(255), nullable=False, unique=True)
+    email = Column(String(255), nullable=False, unique=True)
+    password = Column(String(255), nullable=False)
 
-    chatbot_interactions = relationship("ChatbotInteraction", backref="user")
-    chatbot_performance = relationship("ChatbotPerformance", backref="user")
+    conversations = relationship("Conversation", back_populates="user")
+    preferences = relationship("UserPreference", back_populates="user")
 
-class ChatbotInteraction(Base):
-    """Chatbot interaction model."""
-    __tablename__ = "chatbot_interactions"
-
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    interaction_text = Column(Text, nullable=False)
-    response_text = Column(Text, nullable=False)
-    created_at = Column(TIMESTAMP, nullable=False, server_default="NOW()")
-
-class ChatbotPerformance(Base):
-    """Chatbot performance model."""
-    __tablename__ = "chatbot_performance"
+class Conversation(Base):
+    """Conversation model."""
+    __tablename__ = "conversations"
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    accuracy = Column(String, nullable=False)
-    response_time = Column(String, nullable=False)
-    created_at = Column(TIMESTAMP, nullable=False, server_default="NOW()")
-```
+    conversation_id = Column(String(255), nullable=False, unique=True)
+    created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
 
-And here's the `models.py` file for the `chatbot_service`:
+    user = relationship("User", back_populates="conversations")
+    history = relationship("ConversationHistory", back_populates="conversation")
 
-```python
-# models.py
+class ConversationHistory(Base):
+    """Conversation history model."""
+    __tablename__ = "conversation_history"
 
-from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
-from typing import Optional
+    id = Column(Integer, primary_key=True)
+    conversation_id = Column(Integer, ForeignKey("conversations.id"), nullable=False)
+    message = Column(Text, nullable=False)
+    created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
 
-Base = declarative_base()
+    conversation = relationship("Conversation", back_populates="history")
 
-class ChatbotInteraction(Base):
-    """Chatbot interaction model."""
-    __tablename__ = "chatbot_interactions"
+class UserPreference(Base):
+    """User preference model."""
+    __tablename__ = "user_preferences"
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    interaction_text = Column(Text, nullable=False)
-    response_text = Column(Text, nullable=False)
-    created_at = Column(TIMESTAMP, nullable=False, server_default="NOW()")
+    preference = Column(String(255), nullable=False)
+    value = Column(String(255), nullable=False)
 
-    user = relationship("User", backref="chatbot_interactions")
+    user = relationship("User", back_populates="preferences")
 ```
 
-Note that we've defined the `ChatbotInteraction` model in both `models.py` files, as it's used by both services. We've also defined the relationships between the models, as specified in the requirements.
-
-Also, note that we've used the `server_default` parameter to set the default value for the `created_at` column to the current timestamp. This is a PostgreSQL-specific feature.
-
-Make sure to update the `__init__.py` files in the `database_service` and `chatbot_service` directories to import the `models` module:
-
-```python
-# __init__.py
-
-from .models import *
-```
-
-This will make the models available to the rest of the application.
+This code defines the SQLAlchemy ORM models for the database tables specified in the requirements. It includes relationships between tables where appropriate, uses proper type annotations, and defines primary keys and foreign keys correctly. The table names are meaningful and follow the clean architecture principles.
