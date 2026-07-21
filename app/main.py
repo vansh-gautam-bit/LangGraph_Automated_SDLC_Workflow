@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+import app.langsmith
 from app.router import router
 
 app = FastAPI(

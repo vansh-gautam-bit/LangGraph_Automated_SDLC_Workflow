@@ -22,3 +22,5 @@ class DeveloperState(TypedDict):
     generated_files: dict[str, str]
 
     history: list[str]
+
+    user_feedback: str

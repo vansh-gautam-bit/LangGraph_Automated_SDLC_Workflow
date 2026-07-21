@@ -17,6 +17,7 @@ class Settings(BaseSettings):
 
     LANGSMITH_API_KEY:str
     LANGSMITH_TRACING: bool =False
+    LANGSMITH_PROJECT: str = "LangGraph Automated SDLC Workflow"
 
     model_config = SettingsConfigDict(
         env_file=".env",

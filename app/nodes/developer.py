@@ -17,6 +17,7 @@ def developer_node(state):
         "readme": "",
         "generated_files": {},
         "history": [],
+        "user_feedback": state.get("user_feedback", "",)
     }
 
     result = developer_graph.invoke(developer_state)
