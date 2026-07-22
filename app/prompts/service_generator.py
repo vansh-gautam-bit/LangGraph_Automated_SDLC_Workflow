@@ -28,6 +28,15 @@ Requirements:
 - Handle exceptions gracefully.
 - Follow clean architecture principles.
 - Include all necessary imports.
+- Use dependency injection where appropriate.
+- Use SQLAlchemy sessions correctly.
+- Keep business logic inside the service layer.
 
-Return ONLY valid Python code.
+OUTPUT RULES:
+
+- Return ONLY valid Python code.
+- No Markdown.
+- No ``` blocks.
+- No explanations.
+- Output must be directly writable into services.py.
 """

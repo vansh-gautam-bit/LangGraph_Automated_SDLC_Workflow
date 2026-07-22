@@ -41,5 +41,12 @@ Requirements:
 - Follow FastAPI best practices.
 - Write clean and maintainable code.
 
-Return ONLY Python code.
+OUTPUT RULES:
+
+- Return ONLY valid Python code.
+- Do NOT use Markdown.
+- Do NOT wrap code inside ```.
+- Do NOT explain anything.
+- Include all imports.
+- Output must be directly writable into schemas.py.
 """

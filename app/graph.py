@@ -28,6 +28,13 @@ def route_after_architect(state):
     
     return "developer"
 
+def route_after_deployment(state):
+
+    if state["review_decision"] == "feedback":
+        return "deployment"
+    
+    return END
+
 builder = StateGraph(SDLCState)
 
 builder.add_node(
@@ -128,9 +135,13 @@ builder.add_edge(
     "deployment"
 )
 
-builder.add_edge(
+builder.add_conditional_edges(
     "deployment",
-    END
+    route_after_deployment,
+    {
+        "deployment":"deployment",
+        END: END,
+    }
 )
 
 graph = builder.compile(

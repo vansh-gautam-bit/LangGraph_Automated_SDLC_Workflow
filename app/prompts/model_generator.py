@@ -23,4 +23,13 @@ Requirements:
 - Include all necessary imports.
 - Follow clean architecture principles.
 - Return ONLY valid Python code.
+
+OUTPUT RULES:
+
+- Return ONLY valid Python code.
+- Do NOT use Markdown.
+- Do NOT wrap code inside ``` blocks.
+- Do NOT explain your solution.
+- Include all required imports.
+- Output must be directly writable into models.py.
 """

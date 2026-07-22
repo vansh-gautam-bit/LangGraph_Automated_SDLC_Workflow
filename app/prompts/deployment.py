@@ -7,6 +7,12 @@ Project Location:
 QA Report:
 {qa}
 
+Previous Deployment Plan:
+{previous_artifact}
+
+Human Feedback:
+{feedback}
+
 Based ONLY on the QA report, determine whether the project is ready for deployment.
 
 Return ONLY:
@@ -29,6 +35,13 @@ Next Stage:
 - Deploy
 or
 - Fix Issues
+
+If human feedback is provided:
+- Revise the deployment plan.
+- Address every feedback point.
+- Preserve all correct information.
+
+Return ONLY the deployment plan.
 
 Keep the response under 200 words.
 """

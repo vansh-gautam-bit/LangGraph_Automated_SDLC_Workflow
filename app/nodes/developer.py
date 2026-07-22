@@ -22,10 +22,15 @@ def developer_node(state):
 
     result = developer_graph.invoke(developer_state)
 
+    developer_artifact = {
+    "folder_structure": result["folder_structure"], 
+    "generated_files": result["generated_files"],
+    }
+
     return complete_stage(
         state=state,
         artifact_name="developer_artifact",
-        artifact=result,
+        artifact=developer_artifact,
         next_stage="Reviewer",
         message="✅ Developer completed."
     )

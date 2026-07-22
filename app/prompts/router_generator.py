@@ -29,6 +29,18 @@ Requirements:
 - Include all required imports.
 - Use async endpoints where appropriate.
 - Return proper HTTP status codes.
+- Keep routers thin.
+- Delegate all business logic to services.
+- Use dependency injection.
+- Use response models.
+
+OUTPUT RULES:
+
+- Return ONLY valid Python code.
+- No Markdown.
+- No explanations.
+- No code fences.
+- Output must be directly writable into routers.py.
 
 Return ONLY valid Python code.
 """

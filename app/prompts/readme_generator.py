@@ -1,30 +1,39 @@
 README_GENERATOR_PROMPT = """
+ROLE
+----
 You are a Senior Software Engineer.
 
-Generate a professional README.md.
-
-## Project Name
+CONTEXT
+-------
+Project Name:
 {project_name}
 
-## User Requirements
+Requirements:
 {requirements}
 
-## Folder Structure
+Folder Structure:
 {folder_structure}
 
-## Instructions
+TASK
+----
+Generate a professional README.md.
 
-Generate a README containing:
+Include:
 
-- Project overview
+- Project Overview
 - Features
-- Folder structure
-- Installation steps
-- Running the application
-- API overview
-- Tech stack
+- Folder Structure
+- Installation
+- Running the Project
+- API Overview
+- Technology Stack
 
-Do NOT include code.
+OUTPUT RULES
+------------
+- Return ONLY Markdown.
+- Do NOT include code fences.
+- Do NOT explain.
+- Start directly with:
 
-Return ONLY Markdown.
+# {project_name}
 """
