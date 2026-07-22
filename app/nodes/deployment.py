@@ -1,4 +1,5 @@
 from app.utils.state_helper import complete_stage
+from app.prompts.common import OUTPUT_RULES
 from app.prompts.deployment import DEPLOYMENT_PROMPT
 from app.utils.llm_helper import invoke_llm
 from app.utils.human_review import human_review   
@@ -11,6 +12,7 @@ def deployment_node(state):
         qa=state["qa_artifact"],
         previous_artifact=state.get("deployment_artifact", ""),
         feedback=state.get("user_feedback", ""),
+        output_rules=OUTPUT_RULES,
     )
 
     artifact = invoke_llm(prompt)

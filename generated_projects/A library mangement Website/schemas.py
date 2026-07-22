@@ -1,102 +1,101 @@
 ```python
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Optional
-from datetime import datetime
+from pydantic import BaseModel, Field, ConfigDict
+from typing import Optional, List
 
-class UserCreate(BaseModel):
-    """User create schema"""
-    username: str
-    email: str
-    password: str
+class UserCreateSchema(BaseModel):
+    """Schema for creating a new user."""
+    username: str = Field(..., title="Username", description="The username of the user.")
+    email: str = Field(..., title="Email", description="The email of the user.")
+    password: str = Field(..., title="Password", description="The password of the user.")
 
-class UserUpdate(BaseModel):
-    """User update schema"""
-    username: Optional[str]
-    email: Optional[str]
-    password: Optional[str]
+class UserUpdateSchema(BaseModel):
+    """Schema for updating an existing user."""
+    username: Optional[str] = Field(None, title="Username", description="The username of the user.")
+    email: Optional[str] = Field(None, title="Email", description="The email of the user.")
+    password: Optional[str] = Field(None, title="Password", description="The password of the user.")
 
-class UserResponse(BaseModel):
-    """User response schema"""
+class UserResponseSchema(BaseModel):
+    """Schema for a user response."""
     id: int
     username: str
     email: str
-    password: str
 
-class UserInDB(BaseModel):
-    """User in DB schema"""
+class AiModelCreateSchema(BaseModel):
+    """Schema for creating a new AI model."""
+    name: str = Field(..., title="Name", description="The name of the AI model.")
+    description: str = Field(..., title="Description", description="The description of the AI model.")
+
+class AiModelUpdateSchema(BaseModel):
+    """Schema for updating an existing AI model."""
+    name: Optional[str] = Field(None, title="Name", description="The name of the AI model.")
+    description: Optional[str] = Field(None, title="Description", description="The description of the AI model.")
+
+class AiModelResponseSchema(BaseModel):
+    """Schema for an AI model response."""
     id: int
+    name: str
+    description: str
+
+class UserAiModelCreateSchema(BaseModel):
+    """Schema for creating a new user-AI model association."""
+    user_id: int
+    ai_model_id: int
+
+class UserAiModelUpdateSchema(BaseModel):
+    """Schema for updating an existing user-AI model association."""
+    user_id: Optional[int] = Field(None, title="User ID", description="The ID of the user.")
+    ai_model_id: Optional[int] = Field(None, title="AI Model ID", description="The ID of the AI model.")
+
+class UserAiModelResponseSchema(BaseModel):
+    """Schema for a user-AI model association response."""
+    id: int
+    user_id: int
+    ai_model_id: int
+
+class DataCreateSchema(BaseModel):
+    """Schema for creating new data."""
+    user_id: int
+    ai_model_id: int
+    data: str
+
+class DataUpdateSchema(BaseModel):
+    """Schema for updating existing data."""
+    user_id: Optional[int] = Field(None, title="User ID", description="The ID of the user.")
+    ai_model_id: Optional[int] = Field(None, title="AI Model ID", description="The ID of the AI model.")
+    data: Optional[str] = Field(None, title="Data", description="The data.")
+
+class DataResponseSchema(BaseModel):
+    """Schema for a data response."""
+    id: int
+    user_id: int
+    ai_model_id: int
+    data: str
+
+class AuthTokenSchema(BaseModel):
+    """Schema for an authentication token."""
+    access_token: str
+    refresh_token: str
+    token_type: str
+    expires_in: int
+    scope: str
+
+class AuthTokenCreateSchema(BaseModel):
+    """Schema for creating a new authentication token."""
     username: str
-    email: str
     password: str
 
-class UserDataCreate(BaseModel):
-    """User data create schema"""
-    user_id: int
-    data: dict
+class AuthTokenUpdateSchema(BaseModel):
+    """Schema for updating an existing authentication token."""
+    username: Optional[str] = Field(None, title="Username", description="The username of the user.")
+    password: Optional[str] = Field(None, title="Password", description="The password of the user.")
 
-class UserDataUpdate(BaseModel):
-    """User data update schema"""
-    data: Optional[dict]
-
-class UserDataResponse(BaseModel):
-    """User data response schema"""
-    id: int
-    user_id: int
-    data: dict
-
-class UserDataInDB(BaseModel):
-    """User data in DB schema"""
-    id: int
-    user_id: int
-    data: dict
-
-class ChatbotLogCreate(BaseModel):
-    """Chatbot log create schema"""
-    user_id: int
-    query: str
-    response: str
-
-class ChatbotLogUpdate(BaseModel):
-    """Chatbot log update schema"""
-    query: Optional[str]
-    response: Optional[str]
-
-class ChatbotLogResponse(BaseModel):
-    """Chatbot log response schema"""
-    id: int
-    user_id: int
-    query: str
-    response: str
-    timestamp: datetime
-
-class ChatbotLogInDB(BaseModel):
-    """Chatbot log in DB schema"""
-    id: int
-    user_id: int
-    query: str
-    response: str
-    timestamp: datetime
-
-class UserLogin(BaseModel):
-    """User login schema"""
-    username: str
-    password: str
-
-class UserRegister(BaseModel):
-    """User register schema"""
-    username: str
-    email: str
-    password: str
-    confirm_password: str
-
-class UserForgotPassword(BaseModel):
-    """User forgot password schema"""
-    email: str
-
-class UserResetPassword(BaseModel):
-    """User reset password schema"""
-    password: str
-    confirm_password: str
+class AuthTokenResponseSchema(BaseModel):
+    """Schema for an authentication token response."""
+    access_token: str
+    refresh_token: str
+    token_type: str
+    expires_in: int
+    scope: str
 ```
 
-Note: This code uses pydantic v2 and follows the instructions provided. It includes all the required schemas with proper type hints, optional fields, and descriptive class names. It does not include any business logic or database models.
+This `schemas.py` file defines the request and response schemas for the API endpoints using Pydantic v2. It includes separate schemas for creating, updating, and responding to user, AI model, user-AI model association, data, authentication token, and other related data. The schemas are designed to be clean, maintainable, and follow FastAPI best practices.

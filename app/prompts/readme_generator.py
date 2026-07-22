@@ -8,7 +8,7 @@ CONTEXT
 Project Name:
 {project_name}
 
-Requirements:
+User Requirements:
 {requirements}
 
 Folder Structure:
@@ -18,22 +18,24 @@ TASK
 ----
 Generate a professional README.md.
 
-Include:
+Include ONLY:
 
 - Project Overview
 - Features
 - Folder Structure
 - Installation
-- Running the Project
-- API Overview
+- Running the Application
 - Technology Stack
 
-OUTPUT RULES
-------------
-- Return ONLY Markdown.
-- Do NOT include code fences.
-- Do NOT explain.
-- Start directly with:
+Do NOT generate:
+- API endpoints unless explicitly provided.
+- Database tables unless explicitly provided.
+- Authentication features unless explicitly provided.
+- Deployment instructions unless explicitly provided.
 
-# {project_name}
+Do NOT include code.
+
+{output_rules}
+
+Return Markdown only.
 """

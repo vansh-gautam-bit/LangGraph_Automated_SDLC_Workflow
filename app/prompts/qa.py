@@ -20,6 +20,12 @@ Testing Report
 
 Your responsibility is NOT to review code.
 
+Evaluate ONLY the provided review, security, and testing reports.
+
+Do NOT introduce new issues.
+
+Do NOT infer missing features.
+
 Instead, evaluate the reports and decide whether the software is ready for release.
 
 Return ONLY:
@@ -40,5 +46,6 @@ Top Remaining Issues:
 Final Recommendation:
 ...
 
+{output_rules}
 Keep the response under 250 words.
 """

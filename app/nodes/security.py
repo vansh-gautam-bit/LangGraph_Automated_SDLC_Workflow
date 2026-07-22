@@ -1,5 +1,4 @@
 from pathlib import Path
-
 from app.prompts.security import SECURITY_PROMPT
 from app.utils.llm_helper import invoke_llm
 from app.utils.state_helper import complete_stage

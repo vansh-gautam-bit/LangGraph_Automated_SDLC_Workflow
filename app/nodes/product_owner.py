@@ -28,8 +28,6 @@ def product_owner_node(state):
         memory_context=memory_context,
     )
 
-    print(prompt)
-
     artifact = invoke_llm(prompt)
 
     human = human_review(

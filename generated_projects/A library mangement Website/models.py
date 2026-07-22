@@ -1,70 +1,45 @@
 ```python
-from sqlalchemy import create_engine, Column, Integer, String, JSON, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, JSON, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from pydantic import BaseModel
-from datetime import datetime
-from typing import Optional
-from loguru import logger
-from sqlalchemy import func
 
-# Database connection string
-DB_URL = "postgresql://user:password@host:port/dbname"
-
-# Create the engine
-engine = create_engine(DB_URL)
-
-# Create the base class
 Base = declarative_base()
 
 class User(Base):
-    """User model"""
-    __tablename__ = "users"
+    """Represents a user in the system."""
+    __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
-    username = Column(String, nullable=False)
-    email = Column(String, nullable=False)
+    username = Column(String, nullable=False, unique=True)
+    email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
-    user_data = relationship("UserData", backref="user")
+    ai_models = relationship('UserAiModel', back_populates='user')
 
-class UserData(Base):
-    """User data model"""
-    __tablename__ = "user_data"
+class AiModel(Base):
+    """Represents an AI model in the system."""
+    __tablename__ = 'ai_models'
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    name = Column(String, nullable=False)
+    description = Column(String, nullable=False)
+    user_ai_models = relationship('UserAiModel', back_populates='ai_model')
+
+class UserAiModel(Base):
+    """Represents a user-AI model association."""
+    __tablename__ = 'user_ai_models'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    ai_model_id = Column(Integer, ForeignKey('ai_models.id'), nullable=False)
+    user = relationship('User', back_populates='ai_models')
+    ai_model = relationship('AiModel', back_populates='user_ai_models')
+
+class Data(Base):
+    """Represents data in the system."""
+    __tablename__ = 'data'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    ai_model_id = Column(Integer, ForeignKey('ai_models.id'), nullable=False)
     data = Column(JSON, nullable=False)
-
-class ChatbotLog(Base):
-    """Chatbot log model"""
-    __tablename__ = "chatbot_logs"
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    query = Column(String, nullable=False)
-    response = Column(String, nullable=False)
-    timestamp = Column(DateTime, default=datetime.utcnow, nullable=False)
-
-class UserInDB(BaseModel):
-    """User model for Pydantic"""
-    id: int
-    username: str
-    email: str
-    password: str
-
-class UserDataInDB(BaseModel):
-    """User data model for Pydantic"""
-    id: int
-    user_id: int
-    data: dict
-
-class ChatbotLogInDB(BaseModel):
-    """Chatbot log model for Pydantic"""
-    id: int
-    user_id: int
-    query: str
-    response: str
-    timestamp: datetime
-
-# Create all tables in the engine
-Base.metadata.create_all(engine)
+    user = relationship('User', backref='data')
+    ai_model = relationship('AiModel', backref='data')
 ```
 
-This code defines the SQLAlchemy ORM models for the database tables specified in the requirements. It includes relationships between the tables where appropriate, uses proper type annotations, and defines primary keys and foreign keys correctly. The code also includes all necessary imports and follows clean architecture principles.
+Note: This code assumes that you have already created the database tables using the provided SQL script. The above code defines the SQLAlchemy ORM models based on the provided database schema.

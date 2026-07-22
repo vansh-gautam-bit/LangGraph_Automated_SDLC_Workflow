@@ -15,6 +15,12 @@ Human Feedback:
 
 Based ONLY on the QA report, determine whether the project is ready for deployment.
 
+Base your decision ONLY on the QA report.
+
+Do NOT introduce new blockers.
+
+Do NOT infer missing infrastructure.
+
 Return ONLY:
 
 Deployment Readiness:
@@ -43,5 +49,6 @@ If human feedback is provided:
 
 Return ONLY the deployment plan.
 
+{output_rules}
 Keep the response under 200 words.
 """

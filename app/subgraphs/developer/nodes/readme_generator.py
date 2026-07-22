@@ -1,5 +1,6 @@
 from app.prompts.readme_generator import README_GENERATOR_PROMPT
 from app.utils.llm_helper import invoke_llm
+from app.prompts.common import OUTPUT_RULES
 
 def readme_generator_node(state):
 
@@ -13,6 +14,7 @@ def readme_generator_node(state):
         schemas=state["schemas"],
         routers=state["routers"],
         services=state["services"],
+        output_rules=OUTPUT_RULES,
     )    
 
     readme = invoke_llm(prompt)
