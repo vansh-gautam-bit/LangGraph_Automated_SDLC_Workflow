@@ -24,25 +24,19 @@ An intelligent multi-agent SDLC automation platform that transforms software req
 
 ### 🏗 Architecture
 
-> **Replace with your architecture diagram**
-
-![Architecture](docs/images/architecture.png)
+![Architecture](image-1.png)
 
 ---
 
 ### 🔄 Workflow
 
-> **Replace with workflow diagram**
-
-![Workflow](docs/images/workflow.png)
+![Workflow](image.png)
 
 ---
 
 ### 👨‍💻 Developer Subgraph
 
-> **Replace with Developer Subgraph diagram**
-
-![Developer Subgraph](docs/images/developer_subgraph.png)
+![Developer Subgraph](image-2.png)
 
 </div>
 
@@ -487,33 +481,25 @@ http://localhost:8000/docs
 
 ## Swagger UI
 
-> Replace with screenshot
-
-![Swagger](docs/images/swagger.png)
+![Swagger UI](image-3.png)
 
 ---
 
 ## LangSmith Trace
 
-> Replace with screenshot
-
-![LangSmith](docs/images/langsmith.png)
+![LangSmith Trace](image-6.png)
 
 ---
 
 ## Generated Project
 
-> Replace with screenshot
-
-![Generated Project](docs/images/generated_project.png)
+![Generated Project](image-4.png)
 
 ---
 
 ## Human Review
 
-> Replace with screenshot
-
-![Human Review](docs/images/human_review.png)
+![alt text](image-5.png)
 
 ---
 
